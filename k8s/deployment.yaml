@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: hello
-        image: registry.wnyh.local/hello:main
+        image: registry.wnyh.local/hello:latest
         ports:
         - containerPort: 3000
-
+        
 ---
 
 apiVersion: v1
