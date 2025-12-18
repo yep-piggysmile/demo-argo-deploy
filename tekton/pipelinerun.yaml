@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: go-fiber-
+  namespace: tekton-pipelines
+spec:
+  pipelineRef:
+    name: go-fiber-ci
+  params:
+  - name: IMAGE
+    value: registry.wnyh.local/hello:latest
+  workspaces:
+  - name: shared-workspace
+    volumeClaimTemplate:
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

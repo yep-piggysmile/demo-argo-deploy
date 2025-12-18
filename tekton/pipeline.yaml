@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: go-fiber-ci
+  namespace: tekton-pipelines
+spec:
+  params:
+  - name: IMAGE
+    type: string
+  workspaces:
+  - name: shared-workspace
+  tasks:
+  - name: build
+    taskRef:
+      name: build-push-kaniko
+    params:
+    - name: IMAGE
+      value: $(params.IMAGE)
+    workspaces:
+    - name: source
+      workspace: shared-workspace
